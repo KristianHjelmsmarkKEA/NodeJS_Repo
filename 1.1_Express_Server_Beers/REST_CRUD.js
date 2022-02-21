@@ -2,18 +2,23 @@
 const express = require("express"); //Import
 const app = express(); //instantiate
 
-const beers =[{"id":"1", "beerName": "Carlsberg"}, {"id":"2", "beerName": "Tuborg"}];
+const beers =[
+    {id: 1, beerName: "Carlsberg", expirationDate: new Date() },
+    {id: 2, beerName: "Tuborg", expirationDate: new Date() },
+    {id: 3, alcoholPercentage: 4.6 },
+];
 
-app.use(express.json()); //Allows us to parse json
+app.use(express.json()); //Allows us to parse json, body parsing.
 
 //const app = require("express")();  --oneline implement and instantiate
         //Endpoit    Callback function
 app.get("/beers", (req, res) => {
-    res.send({ beers });
+    res.send({ data: beers });
 });
 
 app.get("/beers/:id", (req, res) => {
-        res.send(beers.find(beer => beer.id === req.params.id));
+    const foundBeer = beers.find(beer => beer.id === Number(req.params.id));
+    foundBeer ? res.send( { data: foundBeer }): res.status(204).send({}); //turnary?? 
 });
 
 app.post("/beers", (req, res) => {
@@ -49,14 +54,16 @@ app.patch("/beers/:id", (req, res) => {
 })
 
 app.delete("/beers/:id", (req, res) => {
-    const beerToDelete = beers.findIndex(beer => beer.id == req.params.id);
+    const beerToDelete = beers.findIndex(beer => beer.id === Number(req.params.id));
     if (beerToDelete !== -1) {
         beers.splice(beerToDelete, 1);
         res.send({"message": "Beer deleted"});
     } else {
-        res.send({"message" : "Beer not deleted, ERROR"});
+        res.status(404).send({ data: beerToDelete, "message" : "Beer not deleted, ERROR"});
     }
 });
 
 
-app.listen(8080); //Should be on the bottom of the file
+app.listen(8080, () => {
+    console.log("Server is running on port: ", 8080);
+}); //Should be on the bottom of the file

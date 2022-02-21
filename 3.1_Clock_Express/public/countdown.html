@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bar opens countdown</title>
+
+    <style>
+        
+
+        #barOpensCountdown {
+            background-color:aqua;
+            margin-top: 250px;
+            margin-left: 37%;
+            border: 10px solid chocolate;
+            border-radius: 25px;
+            width: max-content;
+            text-align: center;
+            padding: 20px;
+        }
+
+    </style>
+</head>
+<body style="background-color:cornflowerblue">
+
+    <div id = "barOpensCountdown">
+        <p>Time left til KEA's bar opens!</p>
+        <div id = "countdown"></div>
+
+    </div>
+    
+
+    <script>
+
+        let nextFridayDate = new Date('02/25/2022 02:00 PM'); //Klokken 14:00 på fredag
+        let second = 1000;
+        let minute = second * 60;
+        let hour = minute * 60;
+        let day = hour * 24;
+        let count
+
+        function timeTilFriday() {
+            let currentTime = new Date();
+            let timeLeft = nextFridayDate - currentTime;  //differencen
+            
+            if (currentTime < 0) { //Hvis det allerede er fredag 14:00 og efter
+                clearInterval(timer); //ClearInterval, clear timer set med setInterval() method
+                document.getElementById('countdown').innerHTML = 'The Bar is OPEN!';
+                return;
+            }
+
+            let days = Math.floor(timeLeft / day); //Math.floor retunere højeste integer lavere eller lig med givet nummer
+            console.log(Math.floor(timeLeft / day));
+            let hours = Math.floor((timeLeft % day) / hour);
+            let minutes = Math.floor((timeLeft % hour) / minute);
+            let seconds = Math.floor((timeLeft % minute) / second);
+            
+            
+            document.getElementById('countdown').innerHTML = days + " days, ";
+            document.getElementById('countdown').innerHTML += hours + " hours, ";
+            document.getElementById('countdown').innerHTML += minutes + " minutes and " ;
+            document.getElementById('countdown').innerHTML += seconds + " seconds ";
+        }
+
+        timer = setInterval(timeTilFriday, 1000); 
+
+    </script>
+    
+</body>
+</html>
