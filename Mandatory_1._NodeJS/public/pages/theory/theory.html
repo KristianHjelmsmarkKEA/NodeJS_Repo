@@ -1,0 +1,36 @@
+<div class="theory-container">
+    <h1>Generel theory covered in class</h1> 
+    <p><br>
+
+        Package.json is a very important file in our applications, as it holds a lot of <br>
+        metadata, information about the application. It defines functional attributes about <br> 
+        the project, which npm uses to install dependencies, run scripts and identifies entry<br>
+        point to our package.<br><br>
+        
+        SSR server side rendering, we’ve learned one of the industrially important reasons, to<br> 
+        prioritize SRR is to help our google SEO, as everything is indexed on googles search, <br>
+        and not when the website is entered, which would be client side rendering. Having a <br>
+        better SEO result, will give the website a better ranking, and more clicks/hits, <br>
+        thereby giving the company more profits, attention and so on.<br>
+        We accomplishes this by rendering our HTML pages on the server, and not sending our<br> 
+        HTML files to the browser, this is also makes the initial load of the website faster. <br>
+        Our way of doing this so far, has been to import the fs module:
+        <xmp>
+            const fs = require("fs");
+        </xmp>
+        Afterwards we get our HTML file to the server side:
+        <xmp>
+            const frontpage = fs.readFileSync("./public/pages/frontpage/frontpage.html").toString();
+        </xmp>
+        Then we concatenate our files, add additional nav-files, footers or similar if we wish: <br>
+        <xmp>
+            const frontpagePage = nav.replace("%%TITLE_PLACEHOLDER%%", "Frontpage") + frontpage + footer;
+        </xmp>
+        In the end we assemble the entire webpage, like a hamburger with different pieces, on our<br>
+        server, this sends everything at once, and only one time, resulting in faster initial load<br>
+        of the webpage, and better SEO results.
+    </p>
+
+</div>
+
+<link rel="stylesheet" href="/pages/theory/theory.css">

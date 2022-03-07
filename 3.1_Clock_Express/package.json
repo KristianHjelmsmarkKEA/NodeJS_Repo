@@ -1,7 +1,30 @@
 {
-    "dependencies": {
-      "express": "^4.17.2"
-      
-    }
+  "name": "3.1_Clock_Express",
+  "version": "1.0.0",
+  "description": "bar-countdown.",
+  "main": "web.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "time",
+    "heroku"
+  ],
+  "author": "KristianH",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "scripts": {
+    "start-dev": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "engines": {
+    "node": "16.x"
   }
+}
   

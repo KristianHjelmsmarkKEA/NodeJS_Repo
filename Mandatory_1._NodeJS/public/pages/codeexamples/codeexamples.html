@@ -1,0 +1,41 @@
+<div class="code-examples-container">
+    <h1>Code examples</h1>
+    <p>
+        In your app.js file, you should have start with having: <br>
+        
+        <xmp>
+            const express = require("express");      //Imports the express framework.
+            const app = express();                   //This will instantiates express
+        </xmp>
+        
+        In the bottom of your apps.js file, you should have: 
+        <xmp>
+        const PORT = process.env.PORT || 9000;  
+
+        const server = app.listen(PORT, () => {             
+            console.log("The server is running on port: ", server.address().port);
+        });
+        </xmp>
+
+        In package.json, you can make commandline scripts, same syntax as with dependencies: <br>
+        <xmp>
+            "scripts": {
+                "start-dev": "cross-env PORT=3000 nodemon app.js",
+                "start": "node app.js"
+            },
+        </xmp>
+        This can be used in many ways, in this case, to setup a developermode command called “start-dev”<br>
+        using nodemon, for real time changes to files, and a specified port, if not called, the app<br>
+        will run on the default port, specified in app.js.<br><br>
+        
+        "process.env.PORT || 9000" - Fucntions as a fallback port, so if the port is not <br>
+        specifed when the applications starts, it will default to port 9000. <br> <br>
+        
+        App.listen returns an object, which is a server, and the let’s you know in your cmd,<br>
+        whether or not the server is running by the console.log line, aswell as which port <br>
+        is being used, this is helpful during development.<br>
+         
+    </p>
+</div>
+
+<link rel="stylesheet" href="/pages/codeexamples/codeexamples.css">

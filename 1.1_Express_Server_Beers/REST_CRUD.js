@@ -8,6 +8,8 @@ const beers =[
     {id: 3, alcoholPercentage: 4.6 },
 ];
 
+let CURRENT_ID = 3;
+
 app.use(express.json()); //Allows us to parse json, body parsing.
 
 //const app = require("express")();  --oneline implement and instantiate
@@ -22,8 +24,10 @@ app.get("/beers/:id", (req, res) => {
 });
 
 app.post("/beers", (req, res) => {
-    beers.push(req.body);
-    res.send(req.body);
+    const beerToCreate = req.body;
+    beerToCreate.id = ++CURRENT_ID;
+    beers.push(beerToCreate);
+    res.send({ data: beerToCreate });
 });
 
 app.put("/beers/:id", (req, res) => {
@@ -40,18 +44,31 @@ app.put("/beers/:id", (req, res) => {
     }    
 });
 
-app.patch("/beers/:id", (req, res) => {
-    const beerToPatch = req.body;
-    beerToPatch.id = req.params.id;
+//Parse, please parese this to int, it t
+//Number, THIS IS A NUMBER, declare
 
-    const beerIndex = beers.findIndex(beer => beer.id === req.params.id);
-    if (beerIndex !== -1) {
-        if(beers[beerIndex].beerName !== beerToPatch.beerName) beers[beerIndex].beerName = beerToPatch.beerName;
-        res.send(beers[beerIndex]);
+/*
+const objectToSpread = {
+    name: "Gustav",
+    name: "Thor"
+};
+console.log({objectToSpread});
+
+*/
+
+app.patch("/beers/:id", (req, res) => {
+    const foundBeerIndex = beers.findIndex(beer => beer.id === Number(req.params.id));
+    if (foundBeerIndex !== -1) {
+        const foundBeer = beers[foundBeerIndex];
+        const beerToPatch = req.body;
+        const updatedBeer = { ...foundBeer, ...beerToPatch, id: foundBeer.id };
+        beers[foundBeerIndex] = updatedBeer;
+    
+        res.send({ data: updatedBeer });
     } else {
-        res.send({"message":"Beer not patched, Error"});
-    } 
-})
+        res.status(404).send({});
+    }
+});
 
 app.delete("/beers/:id", (req, res) => {
     const beerToDelete = beers.findIndex(beer => beer.id === Number(req.params.id));
@@ -64,6 +81,7 @@ app.delete("/beers/:id", (req, res) => {
 });
 
 
-app.listen(8080, () => {
-    console.log("Server is running on port: ", 8080);
+const PORT = 8080;
+app.listen(PORT, () => {
+    console.log("Server is running on port: ", PORT);
 }); //Should be on the bottom of the file

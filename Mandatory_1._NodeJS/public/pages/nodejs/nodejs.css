@@ -1,0 +1,15 @@
+.nodejs-container {
+    margin: auto;
+    margin-top: 50px;
+    height: auto;
+    text-align: left;
+    background-color:lightblue;
+    border: 2px solid black;
+    border-radius: 15px;
+    width: fit-content;
+}
+
+p {
+    display: inline-block;
+
+}
