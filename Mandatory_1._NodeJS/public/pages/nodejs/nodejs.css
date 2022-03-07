@@ -7,9 +7,5 @@
     border: 2px solid black;
     border-radius: 15px;
     width: fit-content;
-}
-
-p {
-    display: inline-block;
-
+    padding: 10px;
 }
