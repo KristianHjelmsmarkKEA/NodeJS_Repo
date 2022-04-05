@@ -1,0 +1,21 @@
+MongoDB                      SQL
+Collections <---------->     Tables
+
+Relations
+
+jsonSchema vs. ODM
+
+{
+    name: "Thor"
+}
+
+{
+    handsUp: true
+}
+
+--Not bound by any restraints in mongodb, schemaless kinda
+
+C     -insert
+R     -find
+U     -update
+D     -deleteOne / deleteMany / remove
