@@ -6,10 +6,6 @@ const dbName = "videos";
 const client = await MongoClient.connect(url);
 const db = client.db(dbName);
 
-//console.log(db);
-//console.log(client);
-
-
 export default {
-    tutorials: db.getCollection("tutorials")
+    tutorials: db.collection("tutorials")
 };
