@@ -6,9 +6,9 @@ const UserSchema = new mongoose.Schema(
 		password: { type: String, required: true },
         email: { type: String, required: true }
 	},
-	{ collection: 'userlogins' }
+	{ collection: 'users' }
 )
 
-const model = mongoose.model('UserSchema', UserSchema)
+const model = mongoose.model('UserSchema', UserSchema);
 
 export default model;
